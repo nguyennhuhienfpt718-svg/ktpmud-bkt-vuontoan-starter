@@ -20,7 +20,7 @@ Fork: https://github.com/nguyennhuhienfpt718-svg/ktpmud-bkt-vuontoan-starter
 | B-10 | Chưa | | |
 
 ### 1.2. Sửa đổi bắt buộc từ Checkpoint 1
-## Mục 1.2 & 2.2 — Trạng thái và Bằng chứng sửa đổi sau Review Checkpoint 1 (Cập nhật 15/11/2026)
+## Mục 1.2 — Trạng thái và Bằng chứng sửa đổi sau Review Checkpoint 1 (Cập nhật 15/11/2026)
 
 Nhóm 56 đã hoàn thành sửa đổi toàn bộ 7 mục theo nhận xét của giảng viên tại PR #6 trước hạn 23:59 ngày 15/11/2026:
 
