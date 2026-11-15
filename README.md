@@ -1,20 +1,19 @@
 # BÀI KIỂM TRA HACK MARATHON 2026 - KTPMUD
-- Môn học: Kỹ thuật phần mềm ứng dụng
-- Giảng viên: TS. Hoàng Quang Huy
-- Mã lớp: 173820 | Mã nhóm: Nhóm 56
-- Track lựa chọn: Track B — Vườn Toán Lớp 3: "Ước lượng trước khi tính đúng"
-- Tag starter: bkt-2026-v1
+- **Môn học:** Kỹ thuật phần mềm ứng dụng
+- **Giảng viên:** TS. Hoàng Quang Huy
+- **Mã lớp:** 173820 | **Mã nhóm:** Nhóm 56
+- **Track lựa chọn:** Track B — Vườn Toán Lớp 3: "Ước lượng trước khi tính đúng"
+- **Tag starter:** `bkt-2026-v1`
 
-### Danh sách thành viên:
-1. Đinh Mai Anh - MSSV: 202413981
-2. Nguyễn Thị Như Hiền - MSSV: 202414102
-3. Lê Thị Thanh Hường - MSSV: 202414162
+## Danh sách thành viên (Ẩn danh theo B-11)
+1. `N56-Member-01`
+2. `N56-Member-02`
+3. `N56-Member-03`
+*(Thông tin họ tên đầy đủ và MSSV của thành viên được đặt tại `CONTRIBUTIONS.md`)*
 
-### Tiến độ M1 (08/11/2026):
-- [x] Đã hoàn thành đặc tả yêu cầu: REQUIREMENTS.md
-- [x] Đã hoàn thành quyết định kiến trúc: DECISIONS.md (ADR-01)
-- [x] Đã hoàn thành kế hoạch kiểm thử: TEST_PLAN.md
-
+## Tiến độ thực hiện
+- **M1 / Checkpoint 1 (08/11/2026):** Hoàn thành đặc tả `REQUIREMENTS.md`, kiến trúc `DECISIONS.md` (ADR-01), kế hoạch kiểm thử `TEST_PLAN.md`.
+- **M2 / Checkpoint 2 (15/11/2026):** Đã sửa đổi toàn bộ 7 mục bắt buộc theo review Checkpoint 1 và cập nhật bằng chứng tại `progress/PROGRESS.md`.
 > **Đây là bản sao đóng băng (starter) dùng cho Bài kiểm tra Hackathon (BKT-2 /
 > Track B) môn Kỹ thuật Phần mềm Ứng dụng (KTPMUD) — KHÔNG phải ứng dụng thật
 > đang vận hành, không kết nối tới dữ liệu/CSDL production thật.** Toàn bộ tên
