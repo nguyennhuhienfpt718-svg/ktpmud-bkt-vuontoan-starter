@@ -10,38 +10,39 @@
 
 Hệ thống áp dụng công thức toán học tất định (deterministic) cho mọi câu hỏi thuộc dạng bài Ước lượng, không phụ thuộc vào ví dụ rời rạc:
 
-### 2.1. Phép nhân ($a \times b$, với $10 \le a \le 999$, $2 \le b \le 9$)
-- **Bước 1 — Làm tròn thừa số $a$ thành $a_{est}$:**
-  - Nếu $10 \le a < 100$: Làm tròn đến hàng chục gần nhất theo quy tắc toán học chuẩn (chữ số hàng đơn vị $\ge 5$ làm tròn lên, $< 5$ làm tròn xuống):
-    $$a_{est} = \lfloor (a + 5) / 10 \rfloor \times 10$$
-  - Nếu $100 \le a \le 999$: Làm tròn đến hàng trăm gần nhất:
-    $$a_{est} = \lfloor (a + 50) / 100 \rfloor \times 100$$
-- **Bước 2 — Tính tâm ước lượng ($E_{center}$):**
-  $$E_{center} = a_{est} \times b$$
-- **Bước 3 — Công thức độ rộng khoảng chấp nhận $[E_{min}, E_{max}]$:**
-  - Bán kính dung sai $\Delta$ được xác định cố định theo độ lớn của $a$:
-    $$\Delta = \begin{cases} 10 & \text{nếu } 10 \le a < 100 \\ 50 & \text{nếu } 100 \le a \le 999 \end{cases}$$
-  - Khoảng chấp nhận: $E_{min} = E_{center} - \Delta$ và $E_{max} = E_{center} + \Delta$.
-  - Giá trị ước lượng $u$ của học sinh được chấm là **Hợp lý (Đúng)** khi và chỉ khi: $E_{min} \le u \le E_{max}$ (tính cả 2 biên).
-  - *Ví dụ:* Phép tính `48 x 3` $\rightarrow a_{est} = 50 \rightarrow E_{center} = 50 \times 3 = 150$. Do $a = 48 < 100$ nên $\Delta = 10 \rightarrow$ Khoảng chấp nhận là `[140, 160]`.
+### 2.1. Phép nhân (`a x b`, với `10 <= a <= 999`, `2 <= b <= 9`)
+- **Bước 1 — Làm tròn thừa số `a` thành `a_est`:**
+  - Nếu `10 <= a < 100`: Làm tròn đến hàng chục gần nhất theo quy tắc toán học chuẩn (chữ số hàng đơn vị `>= 5` làm tròn lên, `< 5` làm tròn xuống):
+    `a_est = Math.round(a / 10) * 10 = Math.floor((a + 5) / 10) * 10`
+  - Nếu `100 <= a <= 999`: Làm tròn đến hàng trăm gần nhất:
+    `a_est = Math.round(a / 100) * 100 = Math.floor((a + 50) / 100) * 100`
+- **Bước 2 — Tính tâm ước lượng (`E_center`):**
+  - Công thức: `E_center = a_est * b`
+- **Bước 3 — Công thức độ rộng khoảng chấp nhận `[E_min, E_max]`:**
+  - Bán kính dung sai `Delta` được xác định cố định theo độ lớn của `a`:
+    - Nếu `10 <= a < 100` thì `Delta = 10`
+    - Nếu `100 <= a <= 999` thì `Delta = 50`
+  - Khoảng chấp nhận: `E_min = E_center - Delta` và `E_max = E_center + Delta`.
+  - Giá trị ước lượng `u` của học sinh được chấm là **Hợp lý (Đúng)** khi và chỉ khi: `E_min <= u <= E_max` (tính cả 2 biên).
+  - *Ví dụ:* Phép tính `48 x 3` -> `a_est = 50` -> `E_center = 50 * 3 = 150`. Do `a = 48 < 100` nên `Delta = 10` -> Khoảng chấp nhận là `[140, 160]`.
 
-### 2.2. Phép chia ($a : b$, với $10 \le a \le 999$, $2 \le b \le 9$)
-- **Bước 1 — Quy tắc tìm số tròn chục tương thích chia hết cho $b$ ($a_{comp}$):**
+### 2.2. Phép chia (`a : b`, với `10 <= a <= 999`, `2 <= b <= 9`)
+- **Bước 1 — Quy tắc tìm số tròn chục tương thích chia hết cho `b` (`a_comp`):**
   - Không dùng quy tắc làm tròn chục thông thường (vì ví dụ `87` làm tròn chục là `90` nhưng `90` không chia hết cho `4`).
-  - Hệ thống định nghĩa quy tắc **Bội số tròn chục gần nhất của số chia $b$**: Tìm số $a_{comp}$ là bội số của $(10 \times b)$ có khoảng cách $|a - a_{comp}|$ nhỏ nhất theo công thức tất định:
-    $$a_{comp} = \lfloor \frac{a}{10 \times b} + 0.5 \rfloor \times (10 \times b)$$
-    *(Nếu $a$ cách đều hai bội số của $10 \times b$ thì công thức trên tự động làm tròn lên bội số lớn hơn. Trường hợp $a < 5 \times b$ thì lấy $a_{comp} = 10 \times b$).*
-- **Bước 2 — Tính tâm ước lượng ($E_{center}$) và Khoảng chấp nhận $[E_{min}, E_{max}]$:**
-  - Tâm ước lượng: $E_{center} = a_{comp} : b$.
-  - Bán kính dung sai cố định cho phép chia: $\Delta = 2$.
-  - Khoảng chấp nhận: $[E_{center} - 2, E_{center} + 2]$. Học sinh nhập $u$ được chấm **Hợp lý (Đúng)** khi $E_{center} - 2 \le u \le E_{center} + 2$.
-  - *Ví dụ:* Phép tính `87 : 4` $\rightarrow$ Bước nhảy $10 \times b = 40$. Ta có $\lfloor 87 / 40 + 0.5 \rfloor = \lfloor 2.675 \rfloor = 2 \rightarrow a_{comp} = 2 \times 40 = 80$. Tâm ước lượng $E_{center} = 80 : 4 = 20 \rightarrow$ Khoảng chấp nhận là `[18, 22]`.
+  - Hệ thống định nghĩa quy tắc **Bội số tròn chục gần nhất của số chia `b`**: Tìm số `a_comp` là bội số của `(10 * b)` có khoảng cách `|a - a_comp|` nhỏ nhất theo công thức tất định:
+    `a_comp = Math.floor(a / (10 * b) + 0.5) * (10 * b)`
+    *(Nếu `a` cách đều hai bội số của `10 * b` thì công thức trên tự động làm tròn lên bội số lớn hơn. Trường hợp `a < 5 * b` thì lấy `a_comp = 10 * b`).*
+- **Bước 2 — Tính tâm ước lượng (`E_center`) và Khoảng chấp nhận `[E_min, E_max]`:**
+  - Tâm ước lượng: `E_center = a_comp / b`.
+  - Bán kính dung sai cố định cho phép chia: `Delta = 2`.
+  - Khoảng chấp nhận: `[E_center - 2, E_center + 2]`. Học sinh nhập `u` được chấm **Hợp lý (Đúng)** khi `E_center - 2 <= u <= E_center + 2`.
+  - *Ví dụ:* Phép tính `87 : 4` -> Bước nhảy `10 * b = 40`. Ta có `Math.floor(87 / 40 + 0.5) = Math.floor(2.675) = 2` -> `a_comp = 2 * 40 = 80`. Tâm ước lượng `E_center = 80 / 4 = 20` -> Khoảng chấp nhận là `[18, 22]`.
 - **Bước 3 — Quy tắc nhập và chấm kết quả chính xác cho phép chia (bao gồm chia có dư):**
   - Ở bước Tính chính xác của phép chia, giao diện hiển thị **2 ô nhập số nguyên**:
-    1. `Thương` ($q$): Phần nguyên của phép chia.
-    2. `Số dư` ($r$): Phần dư của phép chia (nếu học sinh để trống hoặc phép chia hết, mặc định hệ thống coi `r = 0`).
+    1. `Thương` (`q`): Phần nguyên của phép chia.
+    2. `Số dư` (`r`): Phần dư của phép chia (nếu học sinh để trống hoặc phép chia hết, mặc định hệ thống coi `r = 0`).
   - Hệ thống chấm bước Tính chính xác là **Đúng** khi và chỉ khi:
-    $$q == \lfloor a / b \rfloor \quad \text{VÀ} \quad r == (a \bmod b)$$
+    `q == Math.floor(a / b)` **VÀ** `r == (a % b)`
   - *Ví dụ với `87 : 4`:* Học sinh phải nhập `Thương = 21` và `Số dư = 3` mới được chấm Đúng bước tính chính xác.
 
 ---
@@ -51,7 +52,7 @@ Hệ thống áp dụng công thức toán học tất định (deterministic) c
 ### 3.1. Chính sách giới hạn số lần thử lại bước ước lượng (`MAX_ESTIMATE_RETRIES = 2`)
 - Để ngăn học sinh thử sai liên tục nhằm dò ra khoảng chấp nhận, mỗi câu hỏi chỉ cho phép học sinh gửi kiểm tra ước lượng tối đa **2 lần**:
   - **Lần 1 sai:** Hệ thống báo *"Ước lượng chưa hợp lý, em còn 1 lần thử lại"* và gợi ý làm tròn số hạng đầu.
-  - **Lần 2 sai:** Hệ thống ghi nhận bước ước lượng là **Sai** (`ket_qua_uoc_luong = 0`), khóa ô nhập ước lượng, hiển thị số làm tròn gợi ý ($a_{est}$ hoặc $a_{comp}$) và **tự động mở khóa bước tính chính xác** để học sinh vẫn tiếp tục hoàn thành câu hỏi.
+  - **Lần 2 sai:** Hệ thống ghi nhận bước ước lượng là **Sai** (`ket_qua_uoc_luong = 0`), khóa ô nhập ước lượng, hiển thị số làm tròn gợi ý (`a_est` hoặc `a_comp`) và **tự động mở khóa bước tính chính xác** để học sinh vẫn tiếp tục hoàn thành câu hỏi.
   - Mọi request kiểm tra ước lượng từ lần thứ 3 trở đi trên cùng một câu hỏi sẽ bị Backend từ chối (`400 Bad Request`).
 
 ### 3.2. Quy tắc tính điểm (Ảnh hưởng của ước lượng đúng/sai tới điểm số)
@@ -67,7 +68,7 @@ Mỗi câu hỏi có điểm tối đa là **10 điểm** (hoặc trọng số `
 
 Hệ thống định nghĩa 12 câu hỏi mẫu cố định (6 câu nhân, 6 câu chia có cả chia hết và chia có dư) dùng cho seed dữ liệu và kiểm thử tự động:
 
-| Mã Fixture | Đề bài | Loại phép tính | $a_{est} / a_{comp}$ | Tâm $E_{center}$ | Dung sai $\Delta$ | Khoảng chấp nhận $[E_{min}, E_{max}]$ | Đáp án chính xác (Thương, Dư) |
+| Mã Fixture | Đề bài | Loại phép tính | `a_est` / `a_comp` | Tâm `E_center` | Dung sai `Delta` | Khoảng chấp nhận `[E_min, E_max]` | Đáp án chính xác (Thương, Dư) |
 |---|---|---|---|---|---|---|---|
 | `B-F01` | `48 x 3` | Nhân 2 chữ số (làm tròn lên) | `50` | `150` | `10` | `[140, 160]` | `144` |
 | `B-F02` | `42 x 3` | Nhân 2 chữ số (làm tròn xuống) | `40` | `120` | `10` | `[110, 130]` | `126` |
