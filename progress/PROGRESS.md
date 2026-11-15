@@ -20,10 +20,19 @@ Fork: https://github.com/nguyennhuhienfpt718-svg/ktpmud-bkt-vuontoan-starter
 | B-10 | Chưa | | |
 
 ### 1.2. Sửa đổi bắt buộc từ Checkpoint 1
-<!-- Các mục ❗ trong nhận xét Checkpoint 1 của nhóm. Nếu không có, ghi "Không có". -->
-| Mục | Trạng thái | Bằng chứng |
-|---|---|---|
-| Không có | | |
+## Mục 1.2 & 2.2 — Trạng thái và Bằng chứng sửa đổi sau Review Checkpoint 1 (Cập nhật 15/11/2026)
+
+Nhóm 56 đã hoàn thành sửa đổi toàn bộ 7 mục theo nhận xét của giảng viên tại PR #6 trước hạn 23:59 ngày 15/11/2026:
+
+| STT | Mục yêu cầu sửa của Giảng viên (PR #6) | Trạng thái | Bằng chứng giải quyết (File & Mục tương ứng trên Fork) |
+|---|---|---|---|
+| **1** | **Quy tắc ước lượng chưa tất định (B-03)** | ✅ Đã sửa | Đã viết công thức làm tròn $a_{est}$ và dung sai $\Delta$ cố định áp dụng cho mọi câu tại `REQUIREMENTS.md` (Mục 2.1). |
+| **2** | **Phép chia chưa rõ & xử lý phép chia có dư** | ✅ Đã sửa | Đã định nghĩa công thức bội số tròn chục chia hết cho $b$ ($a_{comp} = \lfloor a/(10b) + 0.5 \rfloor \times 10b$) và quy tắc nhập/chấm 2 ô (`Thương`, `Số dư`) tại `REQUIREMENTS.md` (Mục 2.2). |
+| **3** | **Chưa có 12 fixture (B-02) & quy tắc điểm** | ✅ Đã sửa | Đã bổ sung bảng 12 fixture (`B-F01` đến `B-F12`) và công thức tính điểm (100% / 70% / 30% / 0%) tại `REQUIREMENTS.md` (Mục 3.2 & Mục 4) và `data/seed.json`. |
+| **4** | **Mô hình dữ liệu, Migration & Refresh (B-05)** | ✅ Đã sửa | Đã làm rõ việc mở rộng bảng `attempts`/`submissions` trong SQLite, migration `ALTER TABLE` tự động tại `server/db.js` và lưu `trang_thai_buoc = 'CALCULATING'` để giữ trạng thái khi F5 tại `DECISIONS.md` (ADR-01, Mục 2.2 & 2.3). |
+| **5** | **Test plan thiếu ca biên, điểm, B-04, hồi quy** | ✅ Đã sửa | Đã bổ sung đủ 16 Test Cases gồm ca biên (`140, 160, 139, 161`), ca chấm điểm (`TC-09..12`), ca bảo mật B-04 (`TC-13`) và ca hồi quy 4 dạng bài cũ (`TC-16`) tại `TEST_PLAN.md`. |
+| **6** | **Thử lại không giới hạn (Kịch bản 2)** | ✅ Đã sửa | Đã quy định rõ chính sách `MAX_ESTIMATE_RETRIES = 2` (sai 2 lần tự khóa ước lượng, hiện gợi ý và mở bước tính chính xác) tại `REQUIREMENTS.md` (Mục 3.1 & Kịch bản 2). |
+| **7** | **Ẩn danh họ tên trong README (B-11)** | ✅ Đã sửa | Đã thay họ tên thật trong `README.md` bằng alias (`N56-Member-01..03`) và chuyển thông tin thành viên sang `CONTRIBUTIONS.md`. |
 
 ### 1.3. Timeline dự kiến đến khi hoàn thành
 | Việc | Vai trò phụ trách | Mốc (CP2 15/11 · M3 · Freeze 19/11 · M4 20/11) | Ngày dự kiến |
