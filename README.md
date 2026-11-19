@@ -35,8 +35,9 @@ và khu vực giáo viên (theo dõi lớp, cấp tài khoản). Đợt 1 đã n
 Yêu cầu: máy có **Node.js 18+**.
 
 ```bash
-npm install     # chỉ cần chạy 1 lần đầu
-npm start       # mở http://localhost:3000
+npm install     # cài đặt các thư viện cần thiết (chạy 1 lần đầu)
+npm test        # chạy toàn bộ bộ kiểm thử tự động
+npm start       # khởi chạy ứng dụng tại http://localhost:3000
 ```
 
 Lần chạy đầu, server tự tạo `data/vuon-toan.db` và nạp dữ liệu mẫu từ `data/seed.json`.
